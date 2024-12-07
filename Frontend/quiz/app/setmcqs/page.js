@@ -4,6 +4,7 @@ import Image from "next/image";
 import arrow from "./arrow.png"
 import axios from "axios";
 import { useRef, useState } from "react";
+import Navbar from "../Components/Navbar";
 // import { headers } from "next/headers";
 
 export default function Page(){
@@ -65,6 +66,7 @@ export default function Page(){
 
     return(
         <>
+        <Navbar></Navbar>
         <div className="h-screen bg-[#2c2c54] w-full flex flex-col items-center">
            <div className="h-[400px] w-full flex justify-center mt-24">
                <div className="h-[400px] rounded-xl cursor-pointer w-[400px] flex flex-col bg-[#706fd3] items-center space-y-12">

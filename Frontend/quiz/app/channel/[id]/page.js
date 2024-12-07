@@ -75,9 +75,12 @@ export default function QuizComponent() {
       wannaSubmit.push(...wannaSubmit , [onchecked,questionNumber+1])
       if(onchecked == questionArray[questionNumber+1].answer){
         console.log(questionArray[questionNumber].answer)
-        setTotal(total+1)
+        setTotal((ans)=>(ans+1))
       }
-      console.log(questionArray[questionNumber].answer)
+      console.log("The anwser of the question is : " + questionArray[questionNumber].answer + " " + 
+        "and the option which is selected is : " + onchecked + "and the total score is : " + total +
+        "and the type of option is : " + typeof onchecked
+      )
       console.log(total)
       if (questionNumber < questionArray.length - 1) {
         setQuestionNumber((value) => value + 1);

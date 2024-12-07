@@ -26,6 +26,8 @@ export default function() {
           localStorage.setItem("authorization" , "Bearer " + response.data.token)
           console.log("token saved to the local host successfully")
           setLoading(false)
+          alert("Welcome to the site sir")
+          setTimeout(()=>router.push("/") , 500)
         })
 
         .catch((error)=>{
