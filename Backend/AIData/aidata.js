@@ -47,7 +47,8 @@ router.post("/createmcqs", userMiddleWare, upload.single("pdf"), async (req, res
         "answer": "answer_here"
     }
    ]
-   Please ensure all questions follow this format.`;
+   Please ensure all questions follow this format. and please try to create as much as 
+   probelem you can set `;
 
         const result = await model.generateContent(prompt);
 

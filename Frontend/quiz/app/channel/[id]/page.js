@@ -14,6 +14,9 @@ export default function QuizComponent() {
     const [questionArray , setQuestionArray] = useState([]);
     const [onchecked , setOnchecked] = useState("")
     const [total,setTotal] = useState(0)
+    const [reviewProblem, setReviewProblem] = useState(new Set()) // used to set the value in it
+    const [DoneWithQuestion , setDoneWithQuestion] = useState(new Set()) // used to set the question which had been solved
+
 
     // it will store question no. with it's option
     const wannaSubmit = [[]]
@@ -80,6 +83,17 @@ export default function QuizComponent() {
         setQuestionNumber((value) => value + 1);
     }
 
+    if(DoneWithQuestion.has(questionNumber+1)){
+      setDoneWithQuestion((prev)=>{
+        const newSet = new Set(prev)
+        newSet.delete(questionNumber+1)
+        return newSet
+      })
+    }
+    else{
+      setDoneWithQuestion((prev)=>new Set(prev.add(questionNumber+1)))
+    }
+
     }
 
     const addToReview = (e)=>{
@@ -91,6 +105,20 @@ export default function QuizComponent() {
         for(let i = 0 ; i<wannaReview.length ; i++){
           console.log(wannaReview[i])
         }
+      }
+      if (questionNumber < questionArray.length - 1) {
+        setQuestionNumber((value) => value + 1);
+    }
+      if(reviewProblem.has(questionNumber+1)){
+        setReviewProblem((prev)=>{
+          const newSet = new Set(prev)
+          newSet.delete(questionNumber+1)
+          return newSet
+        })
+      }
+      else{
+        console.log("The element is present in the array")
+        setReviewProblem((prev)=>new Set(prev.add(questionNumber+1)))
       }
     }
 
@@ -142,11 +170,19 @@ export default function QuizComponent() {
         {/* buttons section */}
        <div className="h-[500px] w-[30%] grid grid-cols-3 gap-4 overflow-y-scroll p-3">
       {arr.map((myvalue, index) => {
-       return wannaReview.includes(myvalue) ? (
-       <button value={myvalue} onClick={changeValue} key={index} className="bg-orange-600 text-white w-[50px] h-[50px] rounded-full">{myvalue}</button>
-      ) : (
-      <button value={myvalue} onClick={changeValue} key={index} className="bg-black text-white w-[50px] h-[50px] rounded-full"> {myvalue}</button>
-    );
+        {let Review_check = reviewProblem.has(myvalue)
+        let isSubmitCheck = DoneWithQuestion.has(myvalue)
+        let buttonColor = "bg-pink-500"
+        if(Review_check){
+          buttonColor = "bg-orange-500"
+        }
+        else if(isSubmitCheck){
+          buttonColor = "bg-green-500"
+        }
+           return(
+            <button value={myvalue} onClick={changeValue} key={index} className={`${buttonColor} text-white w-[50px] h-[50px] rounded-full`}>{myvalue}</button>
+           )
+        }
   })}
 </div>
 
