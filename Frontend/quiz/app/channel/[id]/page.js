@@ -171,22 +171,24 @@ export default function QuizComponent() {
          </div>
 
         {/* buttons section */}
-       <div className="h-[500px] w-[30%] grid grid-cols-3 gap-4 overflow-y-scroll p-3">
+       <div className="h-[500px] w-[30%] flex flex-wrap gap-5 overflow-y-scroll p-3">
+        <div className="h-[50px] w-full gap-6">
       {arr.map((myvalue, index) => {
         {let Review_check = reviewProblem.has(myvalue)
         let isSubmitCheck = DoneWithQuestion.has(myvalue)
-        let buttonColor = "bg-pink-500"
+        let buttonColor = "bg-slate-500"
         if(Review_check){
-          buttonColor = "bg-orange-500"
+          buttonColor = "bg-violet-500"
         }
         else if(isSubmitCheck){
           buttonColor = "bg-green-500"
         }
            return(
-            <button value={myvalue} onClick={changeValue} key={index} className={`${buttonColor} text-white w-[50px] h-[50px] rounded-full`}>{myvalue}</button>
+            <button value={myvalue} onClick={changeValue} key={index} className={`${buttonColor} text-white ring-2 ring-black w-[100px] h-[50px] rounded-xl font-bold`}>{myvalue}</button>
            )
         }
   })}
+  </div>
 </div>
 
 
