@@ -8,14 +8,14 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="w-full h-auto flex flex-wrap justify-around items-center py-12">
+      <div className="w-full  h-auto flex flex-wrap justify-around items-center py-12">
         <div className="flex flex-col w-full md:w-[50%] p-6 space-y-6">
           <h1 className="text-[60px] md:text-[80px] font-extrabold leading-tight text-indigo-600">
-            Upload Your <span className="text-orange-500">PDF or Photo</span>
+           AI <span className="text-orange-500">PDF or Photo </span> to JEE Mock Test generator
           </h1>
           <h2 className="text-[25px] md:text-[30px] text-gray-700">
-            Seamlessly create quizzes from your documents and images. A smarter
-            way to prepare for your assessments or engage your audience!
+            This site will help you to convert your PDF file to <strong className="text-violet-700 underline">IIT-JEE</strong> Mock test
+            Generator - Now score high ranks with a detailed practice session
           </h2>
 
           <div className="flex space-x-11">
@@ -24,7 +24,7 @@ export default function Home() {
           </button>
 
           <button className="w-[40%] px-6 py-3 mt-4 font-bold text-[20px] bg-slate-300 text-slate-800 ring-2 ring-slate-600">
-            Follow us!!
+            <a href="https://x.com/TSilent_Monk">Follow us!!</a>
           </button>
           </div>
         </div>

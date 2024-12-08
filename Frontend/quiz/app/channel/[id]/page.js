@@ -52,12 +52,14 @@ export default function QuizComponent() {
         if (questionNumber < questionArray.length - 1) {
             setQuestionNumber((value) => value + 1);
         }
+        setOnchecked("")
     };
 
     const decreaseProblemNumber = () => {
         if (questionNumber > 0) {
             setQuestionNumber((value) => value - 1);
         }
+        setOnchecked("")
     };
     
     let arr = [];
@@ -72,31 +74,38 @@ export default function QuizComponent() {
    
 
     const addToSubmit = (e)=>{
-      wannaSubmit.push(...wannaSubmit , [onchecked,questionNumber+1])
-      if(onchecked == questionArray[questionNumber+1].answer){
-        console.log(questionArray[questionNumber].answer)
-        setTotal((ans)=>(ans+1))
+      if(onchecked !== ""){
+        wannaSubmit.push(...wannaSubmit , [onchecked,questionNumber+1])
+        if(onchecked == questionArray[questionNumber+1].answer){
+          console.log(questionArray[questionNumber].answer)
+          setTotal((ans)=>(ans+1))
+        }
+        console.log("The anwser of the question is : " + questionArray[questionNumber].answer + " " + 
+          "and the option which is selected is : " + onchecked + "and the total score is : " + total +
+          "and the type of option is : " + typeof onchecked
+        )
+        console.log(total)
+        if (questionNumber < questionArray.length - 1) {
+          setQuestionNumber((value) => value + 1);
+          setOnchecked("")
       }
-      console.log("The anwser of the question is : " + questionArray[questionNumber].answer + " " + 
-        "and the option which is selected is : " + onchecked + "and the total score is : " + total +
-        "and the type of option is : " + typeof onchecked
-      )
-      console.log(total)
-      if (questionNumber < questionArray.length - 1) {
-        setQuestionNumber((value) => value + 1);
-    }
-
-    if(DoneWithQuestion.has(questionNumber+1)){
-      setDoneWithQuestion((prev)=>{
-        const newSet = new Set(prev)
-        newSet.delete(questionNumber+1)
-        return newSet
-      })
-    }
-    else{
-      setDoneWithQuestion((prev)=>new Set(prev.add(questionNumber+1)))
-    }
-
+  
+      if(DoneWithQuestion.has(questionNumber+1)){
+        setDoneWithQuestion((prev)=>{
+          const newSet = new Set(prev)
+          newSet.delete(questionNumber+1)
+          return newSet
+        })
+      }
+      else{
+        setDoneWithQuestion((prev)=>new Set(prev.add(questionNumber+1)))
+      }
+  
+      }
+      else{
+        alert("select any of the option to go forward")
+      }
+      
     }
 
     const addToReview = (e)=>{
@@ -111,6 +120,8 @@ export default function QuizComponent() {
       }
       if (questionNumber < questionArray.length - 1) {
         setQuestionNumber((value) => value + 1);
+        setOnchecked("")
+
     }
       if(reviewProblem.has(questionNumber+1)){
         setReviewProblem((prev)=>{
@@ -151,6 +162,9 @@ export default function QuizComponent() {
             <p className="font-bold text-[25px]">Roll No : <span className="font-medium text-[20px]">220180103022</span></p>
           </div>
          </div> 
+         <div className="h-full w-auto flex justify-center items-center">
+            <h1 className="text-[20px] bg-slate-600 p-2 rounded-2xl text-white font-bold">Time remaining : 2:59:59</h1>
+         </div>
        </div>
 
        <div className="w-full h-auto mt-8 flex justify-around items-center">
@@ -176,7 +190,7 @@ export default function QuizComponent() {
       {arr.map((myvalue, index) => {
         {let Review_check = reviewProblem.has(myvalue)
         let isSubmitCheck = DoneWithQuestion.has(myvalue)
-        let buttonColor = "bg-slate-500"
+        let buttonColor = "bg-slate-800"
         if(Review_check){
           buttonColor = "bg-violet-500"
         }
@@ -184,7 +198,7 @@ export default function QuizComponent() {
           buttonColor = "bg-green-500"
         }
            return(
-            <button value={myvalue} onClick={changeValue} key={index} className={`${buttonColor} text-white ring-2 ring-black w-[100px] h-[50px] rounded-xl font-bold`}>{myvalue}</button>
+            <button value={myvalue} onClick={changeValue} key={index} className={`${buttonColor} text-white ring-2 ml-3 mt-2 ring-black w-[100px] h-[50px] rounded-xl font-bold`}>{myvalue}</button>
            )
         }
   })}
