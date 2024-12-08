@@ -13,11 +13,41 @@ export default function QuizComponent() {
     const [questionNumber, setQuestionNumber] = useState(0);
     const [questionArray , setQuestionArray] = useState([]);
     const [onchecked , setOnchecked] = useState("")
+    const [selectedOption , setSelectedOption] = useState({})
     const [total,setTotal] = useState(0)
     const [reviewProblem, setReviewProblem] = useState(new Set()) // used to set the value in it
     const [DoneWithQuestion , setDoneWithQuestion] = useState(new Set()) // used to set the question which had been solved
+    let [Second,setSecond] = useState(59)
+    let [Minute,setMinute] = useState(59)
+    let [hour , setHour] = useState(2)
 
 
+    // This is the timinig logic
+
+    // second logic
+    setTimeout(()=>{
+      if(Second<=0){
+        Second = 59
+        Minute = Minute-1;
+      }
+      setSecond(Second-1)
+    },1000)
+
+    // minute logic
+    setTimeout(()=>{
+      if(Minute<=0){
+        Minute = 59
+        hour = hour-1
+      }
+     setMinute(Minute-1)
+    },60000)
+
+    // hour logic
+    setTimeout(()=>{
+      // if(hour<=0)
+      setHour(hour-1)
+    },3600000)
+ 
     // it will store question no. with it's option
     const wannaSubmit = [[]]
 
@@ -74,7 +104,7 @@ export default function QuizComponent() {
    
 
     const addToSubmit = (e)=>{
-      if(onchecked !== ""){
+      if(onchecked !== "" || selectedOption[questionNumber]){
         wannaSubmit.push(...wannaSubmit , [onchecked,questionNumber+1])
         if(onchecked == questionArray[questionNumber+1].answer){
           console.log(questionArray[questionNumber].answer)
@@ -138,7 +168,12 @@ export default function QuizComponent() {
 
     const handleCheck = (e)=>{
       console.log("The option which i selected is : " + e.target.value)
-      setOnchecked(e.target.value)
+      let myselectedValue = e.target.value
+      setOnchecked(myselectedValue)
+      setSelectedOption((prev)=>({
+        ...prev,
+        [questionNumber] : myselectedValue
+      }))
     }
 
 
@@ -163,7 +198,7 @@ export default function QuizComponent() {
           </div>
          </div> 
          <div className="h-full w-auto flex justify-center items-center">
-            <h1 className="text-[20px] bg-slate-600 p-2 rounded-2xl text-white font-bold">Time remaining : 2:59:59</h1>
+            <h1 className="text-[20px] bg-slate-600 p-2 rounded-2xl text-white font-bold">Time remaining : {hour}:{Minute}:{Second}</h1>
          </div>
        </div>
 
@@ -172,13 +207,13 @@ export default function QuizComponent() {
          <h1 className="text-[30px] p-5">Question.{questionNumber+1}</h1>
          <p className="p-5 text-[20px] font-bold">{questionArray[questionNumber]?.question || "Loading question..."}</p>
          <div className="flex flex-col items-start p-6 text-[20px] space-y-7 overflow-y-scroll font-medium">
-         <input type="radio" value="option1" checked={onchecked==="option1"} onChange={handleCheck}/>
+         <input type="radio" value="option1" checked={selectedOption[questionNumber]==="option1"} onChange={handleCheck}/>
          Option 1) {questionArray[questionNumber]?.option1 || "Loading..."}
-         <input type="radio" value="option2" checked={onchecked==="option2"} onChange={handleCheck}/>
+         <input type="radio" value="option2" checked={selectedOption[questionNumber]==="option2"} onChange={handleCheck}/>
           Option 2) {questionArray[questionNumber]?.option2 || "Loading..."}
-         <input type="radio" value="option3" checked={onchecked==="option3"} onChange={handleCheck}/>
+         <input type="radio" value="option3" checked={selectedOption[questionNumber]==="option3"} onChange={handleCheck}/>
           Option 3) {questionArray[questionNumber]?.option3 || "Loading..."}
-         <input type="radio" value="option4" checked={onchecked==="option4"} onChange={handleCheck}/>
+         <input type="radio" value="option4" checked={selectedOption[questionNumber]==="option4"} onChange={handleCheck}/>
           Option 4) {questionArray[questionNumber]?.option4 || "Loading..."}
          
          </div>
