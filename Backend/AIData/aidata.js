@@ -22,7 +22,7 @@ router.post("/createmcqs", userMiddleWare, upload.single("pdf"), async (req, res
     }
 
     try {
-        const genAI = new GoogleGenerativeAI("AIzaSyAVMQFmj31NcpmKkNHRnc_EKZmb3D2xTvU");
+        const genAI = new GoogleGenerativeAI(apikey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const pdfPath = req.file.path;
         if (!pdfPath) {
