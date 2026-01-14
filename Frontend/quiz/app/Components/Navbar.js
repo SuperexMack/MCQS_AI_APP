@@ -11,8 +11,8 @@ export default function Navbar(){
                 <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/">Home</Link></li>
                 <li className="hover:relative hover:top-4 hover:cursor-pointer">About</li>
                 <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/setmcqs">Create A Mock-Test</Link></li>
-                <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/Auth/Signin">Login</Link></li>
-                <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/Auth/Signup">Register</Link></li>
+                <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/Signin">Login</Link></li>
+                <li className="hover:relative hover:top-4 hover:cursor-pointer"><Link href="/Signup">Register</Link></li>
                 <li className="hover:relative hover:top-4 hover:cursor-pointer">Contact</li>
                 <li className="hover:relative hover:top-4 hover:cursor-pointer">Contribute to project</li>
             </ul>

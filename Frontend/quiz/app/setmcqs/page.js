@@ -54,7 +54,7 @@ export default function Page() {
     return (
         <>
             <Navbar />
-            <div className="h-screen bg-gradient-to-r from-purple-700 via-blue-800 to-indigo-900 w-full flex flex-col items-center px-6">
+            <div className="h-screen bg-black w-full flex flex-col items-center px-6">
                 <div className="h-[500px] w-full flex justify-center items-center mt-20">
                     <div className="h-[450px] rounded-lg shadow-xl w-[350px] flex flex-col bg-white/10 backdrop-blur-lg items-center p-6">
                         <input onChange={addData} className="hidden" type="file" ref={setImage}/>
