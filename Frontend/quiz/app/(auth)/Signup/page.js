@@ -13,7 +13,7 @@ export default function() {
     const [loading , setLoading] = useState(false)
     const router = useRouter()
     const changeRoute = ()=>{
-      router.push('/Auth/Signin')
+      router.push('/Signin')
     }
 
   const saveData = async()=>{

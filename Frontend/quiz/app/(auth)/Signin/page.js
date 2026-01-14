@@ -12,7 +12,7 @@ export default function() {
 
     const router = useRouter()
     const changeRoute = ()=>{
-      router.push('/Auth/Signup')
+      router.push('/Signup')
     }
 
     const saveData = async()=>{
